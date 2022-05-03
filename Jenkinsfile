@@ -1,16 +1,18 @@
   node{
 
-      echo "Job name is: ${env.JOB_NAME}"
+          echo "Job name is: ${env.JOB_NAME}"
 	  echo "Node name is: ${env.NODE_NAME}"
-
-      // configuring maven version
+	  
+	  properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')), [$class: 'JobLocalConfiguration', changeReasonComment: ''], pipelineTriggers([pollSCM('* * * * *')])])
+	  
+          // configuring maven version
 	  def MavenHome = tool name:'Maven3.8.4'
 	  
 	  // Get the code from git repo
 	  stage('CheckoutCode'){
 		git branch: 'development', credentialsId: 'faaddfa9-0d2c-4929-9771-6bf1c60a1097', url: 'https://github.com/Ram-DevOps-Training/maven-web-application.git'
 	  }
-	  /*
+	  
 	  // Do the build using maven
 	  stage('Build'){
 	  sh "${MavenHome}/bin/mvn clean package"
@@ -29,5 +31,5 @@
     	  sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@3.110.84.212:/opt/apache-tomcat-9.0.62/webapps/"
 	  }	  
 	  }
-	  */
+	  
 	  }
