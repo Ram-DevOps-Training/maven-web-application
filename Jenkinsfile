@@ -10,6 +10,7 @@
 	  stage('CheckoutCode'){
 		git branch: 'development', credentialsId: 'faaddfa9-0d2c-4929-9771-6bf1c60a1097', url: 'https://github.com/Ram-DevOps-Training/maven-web-application.git'
 	  }
+	  /*
 	  // Do the build using maven
 	  stage('Build'){
 	  sh "${MavenHome}/bin/mvn clean package"
@@ -28,5 +29,5 @@
     	  sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@3.110.84.212:/opt/apache-tomcat-9.0.62/webapps/"
 	  }	  
 	  }
-	  
+	  */
 	  }
