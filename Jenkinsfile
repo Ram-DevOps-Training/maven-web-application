@@ -37,6 +37,7 @@ node{
 	  def MavenHome = tool name:'Maven3.8.4'
 	  
 	  try{
+	  SendSlackNotifications('STARTED')  
 	  // Get the code from git repo
 	  stage('CheckoutCode'){
 		git branch: 'development', credentialsId: 'faaddfa9-0d2c-4929-9771-6bf1c60a1097', url: 'https://github.com/Ram-DevOps-Training/maven-web-application.git'
